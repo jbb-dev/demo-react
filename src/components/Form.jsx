@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { INPUT_TYPE } from '../commun/inputType';
 
 const Form = () => {
 
     const [playerName, setPlayerName] = useState('');
     const [password, setPassword] = useState('');
+    // const [inputType, setInputType] = useState(INPUT_TYPE.PASSWORD);
+    const [isPasswordType, setIsPasswordType] = useState(true);
+
 
     const handleName = (event) => {
         const value = event.target.value;
@@ -20,11 +24,19 @@ const Form = () => {
         console.log('submit');
     };
 
-    const showMyPassword = () => {
-        console.log('show my password');
-    };
+    // Méthode un bourrine
+    // const showMyPassword = () => {
+    //     if (inputType === INPUT_TYPE.PASSWORD)
+    //     {
+    //         setInputType(INPUT_TYPE.TEXT);
+    //     }
+    //     else
+    //     {
+    //         setInputType(INPUT_TYPE.PASSWORD);
+    //     }
+    // };
 
-
+    const handleMyPassword = () => setIsPasswordType(!isPasswordType);
 
     return (
         <div>
@@ -40,14 +52,14 @@ const Form = () => {
                 <div>
                     <label>Password : </label>
                     <input 
-                        type='password' 
+                        type={isPasswordType ? INPUT_TYPE.PASSWORD : INPUT_TYPE.TEXT} 
                         value={password}
                         onChange={handlePassword}
                     />
                 </div>
                 <input type="submit" value="Subscribe!" />
             </form>
-            <button onClick={showMyPassword}>Show my password</button>
+            <button onClick={handleMyPassword}>Show my password</button>
         </div>
     );
 };
