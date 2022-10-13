@@ -3,15 +3,19 @@ import { INPUT_TYPE } from '../commun/inputType';
 
 const Form = () => {
 
-    const [playerName, setPlayerName] = useState('');
+    const [name, setName] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [city, setCity] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [email, setEmail] = useState('');
+
     const [password, setPassword] = useState('');
-    // const [inputType, setInputType] = useState(INPUT_TYPE.PASSWORD);
     const [isPasswordType, setIsPasswordType] = useState(true);
 
 
     const handleName = (event) => {
         const value = event.target.value;
-        setPlayerName(value);
+        setName(value);
     };
 
     const handlePassword = (event) => {
@@ -19,22 +23,30 @@ const Form = () => {
         setPassword(value);
     };
 
+    const handleFirstname = (event) => {
+        const value = event.target.value;
+        setFirstname(value);
+    };
+
+    const handleCity = (event) => {
+        const value = event.target.value;
+        setCity(value);
+    };
+
+    const handlePostalCode = (event) => {
+        const value = event.target.value;
+        setPostalCode(value);
+    };
+
+    const handleEmail = (event) => {
+        const value = event.target.value;
+        setEmail(value);
+    };
+
     const register = (e) => {
         e.preventDefault();
         console.log('submit');
     };
-
-    // Méthode un bourrine
-    // const showMyPassword = () => {
-    //     if (inputType === INPUT_TYPE.PASSWORD)
-    //     {
-    //         setInputType(INPUT_TYPE.TEXT);
-    //     }
-    //     else
-    //     {
-    //         setInputType(INPUT_TYPE.PASSWORD);
-    //     }
-    // };
 
     const handleMyPassword = () => setIsPasswordType(!isPasswordType);
 
@@ -42,11 +54,43 @@ const Form = () => {
         <div>
             <form action="" onSubmit={register}>
                 <div>
-                    <label>Player name : </label>
+                    <label>Nom : </label>
                     <input 
                         type='text' 
-                        value={playerName}
+                        value={name}
                         onChange={event => handleName(event)}
+                    />
+                </div>
+                <div>
+                    <label>Prénom : </label>
+                    <input 
+                        type='text' 
+                        value={firstname}
+                        onChange={event => handleFirstname(event)}
+                    />
+                </div>
+                <div>
+                    <label>Ville : </label>
+                    <input 
+                        type='text' 
+                        value={city}
+                        onChange={event => handleCity(event)}
+                    />
+                </div>
+                <div>
+                    <label>Code postal : </label>
+                    <input 
+                        type='text' 
+                        value={postalCode}
+                        onChange={event => handlePostalCode(event)}
+                    />
+                </div>
+                <div>
+                    <label>Login : </label>
+                    <input 
+                        type='text' 
+                        value={email}
+                        onChange={event => handleEmail(event)}
                     />
                 </div>
                 <div>
