@@ -3,107 +3,104 @@ import { INPUT_TYPE } from '../commun/inputType';
 
 const Form = () => {
 
-    const [name, setName] = useState('');
-    const [firstname, setFirstname] = useState('');
-    const [city, setCity] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-    const [email, setEmail] = useState('');
+    const [user, setUser] = useState(
+        {
+            name: '',
+            firstname: '',
+            city: '',
+            postalCode: '',
+            email: '',
+            password: ''
+        }
+    );
 
-    const [password, setPassword] = useState('');
+    const handleUser = (e, caracteristique) => {
+        const userName = 'JB'
+        console.log("Coucou je m'appelle ", userName)
+        console.log(`Coucou je m'appelle ${userName}`)
+        const value = e.target.value;
+        setUser({...user, [`${caracteristique}`] : value})
+    };
+
     const [isPasswordType, setIsPasswordType] = useState(true);
-
-
-    const handleName = (event) => {
-        const value = event.target.value;
-        setName(value);
-    };
-
-    const handlePassword = (event) => {
-        const value = event.target.value;
-        setPassword(value);
-    };
-
-    const handleFirstname = (event) => {
-        const value = event.target.value;
-        setFirstname(value);
-    };
-
-    const handleCity = (event) => {
-        const value = event.target.value;
-        setCity(value);
-    };
-
-    const handlePostalCode = (event) => {
-        const value = event.target.value;
-        setPostalCode(value);
-    };
-
-    const handleEmail = (event) => {
-        const value = event.target.value;
-        setEmail(value);
-    };
+    const [isSubscribed, setIsSubscribed] = useState(false);
 
     const register = (e) => {
         e.preventDefault();
-        console.log('submit');
+        setIsSubscribed(true);
+    };
+
+    const displayResult = () => {
+        return(
+            <div>
+                Nom: {user.name}
+                Prenom: {user.firstname}
+                Ville: {user.city}
+                CP: {user.postalCode}
+                Login: {user.email}
+                Password: {user.password}
+            </div>
+        )
     };
 
     const handleMyPassword = () => setIsPasswordType(!isPasswordType);
 
     return (
         <div>
+            <button onClick={() => console.log(user)}>SHOW USER</button>
             <form action="" onSubmit={register}>
                 <div>
                     <label>Nom : </label>
                     <input 
                         type='text' 
-                        value={name}
-                        onChange={event => handleName(event)}
+                        value={user.name}
+                        onChange={event => handleUser(event, 'name')}
                     />
                 </div>
                 <div>
                     <label>Prénom : </label>
                     <input 
                         type='text' 
-                        value={firstname}
-                        onChange={event => handleFirstname(event)}
+                        value={user.firstname}
+                        onChange={event => handleUser(event, 'firstname')}
                     />
                 </div>
                 <div>
                     <label>Ville : </label>
                     <input 
                         type='text' 
-                        value={city}
-                        onChange={event => handleCity(event)}
+                        value={user.city}
+                        onChange={event => handleUser(event, 'city')}
                     />
                 </div>
                 <div>
                     <label>Code postal : </label>
                     <input 
                         type='text' 
-                        value={postalCode}
-                        onChange={event => handlePostalCode(event)}
+                        value={user.postalCode}
+                        onChange={event => handleUser(event, 'postalCode')}
                     />
                 </div>
                 <div>
                     <label>Login : </label>
                     <input 
                         type='text' 
-                        value={email}
-                        onChange={event => handleEmail(event)}
+                        value={user.email}
+                        onChange={event => handleUser(event, 'email')}
                     />
                 </div>
                 <div>
                     <label>Password : </label>
                     <input 
                         type={isPasswordType ? INPUT_TYPE.PASSWORD : INPUT_TYPE.TEXT} 
-                        value={password}
-                        onChange={handlePassword}
+                        value={user.password}
+                        onChange={event => handleUser(event, 'password')}
                     />
                 </div>
                 <input type="submit" value="Subscribe!" />
             </form>
             <button onClick={handleMyPassword}>Show my password</button>
+            { isSubscribed && displayResult() }
         </div>
     );
 };
