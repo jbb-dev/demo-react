@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import User from './User';
 
 const userFormation = {
@@ -32,8 +32,25 @@ const userFormation = {
 ];
 
 const UserList = () => {
+
+    const [count, setCount] = useState(0);
+    const [hasCliked, setHasCliked] = useState(false);
+
+    const getStudents = () => {
+      console.log('getStudents');
+    };
+
+    useEffect(() => {
+      getStudents();
+    }, [count, hasCliked]);
+
     return (
         <div>
+          <button onClick={() => setCount(count + 1)}>+</button>
+          <button onClick={() => setHasCliked(!hasCliked)}>J'ai clique</button>
+
+          <h3>Compteur = {count}</h3>
+          <h1>Liste des étudiants de l'école : </h1>
             { studentsList.map((eleve, i) => 
                 <User
                     key={i} 

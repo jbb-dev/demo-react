@@ -15,9 +15,6 @@ const Form = () => {
     );
 
     const handleUser = (e, caracteristique) => {
-        const userName = 'JB'
-        console.log("Coucou je m'appelle ", userName)
-        console.log(`Coucou je m'appelle ${userName}`)
         const value = e.target.value;
         setUser({...user, [`${caracteristique}`] : value})
     };
