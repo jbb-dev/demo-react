@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import Post from './Post';
 
-const Posts = () => {
+const ListPosts = () => {
 
     const [posts, setPosts] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -20,11 +21,17 @@ const Posts = () => {
     const displayPosts = () => {
         return (
             <ul>
-                {posts.map(post=> 
-                    <li key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
-                    </li>
+                {posts.map((post, index)=> 
+                    <Post 
+                        key={post.id}
+                        id={post.id}
+                        index={index}
+                        userId={post.userId}
+                        body={post.body}
+                        title={post.title}
+                        posts={posts}
+                        setterPosts={setPosts}
+                    />
                 )}
             </ul>
         );
@@ -49,4 +56,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default ListPosts;

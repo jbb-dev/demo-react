@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import UserList from './components/UserList';
 import Form from './components/Form';
-import Posts from './components/Posts';
+import ListPosts from './components/ListPosts';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       {/* <Form /> */}
       {/* <UserList /> */}
-      <Posts />
+      <ListPosts />
     </div>
   );
 };
