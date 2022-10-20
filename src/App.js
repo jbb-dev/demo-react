@@ -3,6 +3,8 @@ import { useState } from 'react';
 import UserList from './components/UserList';
 import Form from './components/Form';
 import ListPosts from './components/ListPosts';
+import 'antd/dist/antd.css';
+
 
 function App() {
 

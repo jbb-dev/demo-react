@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Button } from 'antd';
 import './post.css';
-
+// import '~antd/dist/antd.css';
 
 const Post = (props) => {
 
@@ -8,11 +9,11 @@ const Post = (props) => {
     const [newTitle, setTitle] = useState("");
     const [newBody, setBody] = useState("");
 
-    const deletePost = () => {
-        const listePostsActuel = props.posts;
-        const nouveauTableau = listePostsActuel.filter(post =>  post.id !== props.id);
-        {props.setterPosts(nouveauTableau)};
-    };
+    // const deletePost = () => {
+    //     const listePostsActuel = props.posts;
+    //     const nouveauTableau = listePostsActuel.filter(post =>  post.id !== props.id);
+    //     {props.setterPosts(nouveauTableau)};
+    // };
 
     const updatePost = () => {
         setIsModified(!isModified);
@@ -37,7 +38,7 @@ const Post = (props) => {
             <div className='Post_detail'>
                 <p>{props.body}</p>
             </div>
-            <button onClick={deletePost}>Supprimer</button>
+            <button onClick={() => props.delete(props.id)}>Supprimer</button>
             <button onClick={updatePost}>Modifier</button>
             <br/>
             <br/>
@@ -59,7 +60,15 @@ const Post = (props) => {
                             onChange={event => setBody(event.target.value)}  
                         />
                     </div>
-                    <button onClick={save}>Enregistrer</button>
+                    <Button 
+                        type="primary" 
+                        onClick={save}
+                        size="large"
+                        style={{ background: "red", border: "none" }}
+                    >
+                        Enregistrer
+                    </Button>
+                    {/* <button onClick={save}>Enregistrer</button> */}
                 </div>
             }    
         </div>
